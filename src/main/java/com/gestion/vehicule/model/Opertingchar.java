@@ -2,6 +2,9 @@ package com.gestion.vehicule.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,6 +25,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="opertingchar_dim")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Opertingchar {
 	
 	@Id
