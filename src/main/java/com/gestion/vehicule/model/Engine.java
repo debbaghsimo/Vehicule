@@ -1,9 +1,9 @@
 package com.gestion.vehicule.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -25,8 +25,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="engine_dim")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class Engine {
+public class Engine implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5001005095344411787L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +48,7 @@ public class Engine {
 	@Column(nullable=false)
 	private double maxPower;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "engine",cascade = CascadeType.ALL)
 	private List<Consommation> consommations;
 	

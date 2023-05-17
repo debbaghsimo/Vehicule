@@ -1,9 +1,9 @@
 package com.gestion.vehicule.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -25,9 +25,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="vehicule_dim")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class Vehicule {
+public class Vehicule implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6744104147954225953L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -45,13 +49,16 @@ public class Vehicule {
 	@Column(nullable=false)
 	private String gearboxtype;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "vehicule",cascade = CascadeType.ALL)
-	private List<Consommation> consommations;
-	
-
 	@Column(nullable=false)
 	private int nmbofseat;
 
 	@Column(nullable=false)
-	private String height;
+	private String height;	
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "vehicule",cascade = CascadeType.ALL)
+	private List<Consommation> consommations;
+	
+
+	
 }

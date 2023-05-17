@@ -2,9 +2,7 @@ package com.gestion.vehicule.model;
 
 
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
+import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,9 +22,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="consommation_fact")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class Consommation {
+public class Consommation implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3872528249799028388L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -43,7 +45,7 @@ public class Consommation {
 	@ManyToOne
 	@JoinColumn(name = "opch_id")
 	private Opertingchar opertingchar;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "time_id")
 	private Time time;
@@ -58,10 +60,13 @@ public class Consommation {
 	private int speed;
 	
 	@Column(nullable=false)
-	private float consommation_city;
+	private float taux_consomationcity;
 	
 	@Column(nullable=false)
-	private float consommation_highway;
+	private float taux_consomationhighway;
+	
+	@Column(nullable=true)
+	private int moyen_distanceParcours;
 	
 	@Column(nullable=false)
 	private float mixed_consommation;
