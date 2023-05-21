@@ -33,6 +33,7 @@ public class Vehicule implements Serializable{
 	private static final long serialVersionUID = 6744104147954225953L;
 
 	@Id
+	@Column(name="vehiculeId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
@@ -47,10 +48,10 @@ public class Vehicule implements Serializable{
 	
 
 	@Column(nullable=false)
-	private String gearboxtype;
+	private String gearboxType;
 	
 	@Column(nullable=false)
-	private int nmbofseat;
+	private int nbrOfSeat;
 
 	@Column(nullable=false)
 	private String height;	

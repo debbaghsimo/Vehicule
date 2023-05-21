@@ -33,20 +33,21 @@ public class Engine implements Serializable {
 	private static final long serialVersionUID = -5001005095344411787L;
 
 	@Id
+	@Column(name="engineId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable=false)
+	@Column(nullable=false,name="enginePower")
 	private double enginePower;
 
 	@Column(nullable=false)
 	private int capacity;
 
-	@Column(nullable=false)
+	@Column(nullable=false,name="engineType")
 	private String engineType;
 
-	@Column(nullable=false)
-	private double maxPower;
+	@Column(nullable=false,name="maxPower")
+	private String maxPower;
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "engine",cascade = CascadeType.ALL)

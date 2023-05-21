@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gestion.vehicule.model.Consommation;
+import com.gestion.vehicule.model.Vehicule;
 import com.gestion.vehicule.repository.ConsommationRepository;
+import com.gestion.vehicule.repository.VehiculeRepository;
 
 @RestController
 @RequestMapping(path="/consommation")
@@ -22,6 +24,8 @@ import com.gestion.vehicule.repository.ConsommationRepository;
 public class ConsommationController {
 	@Autowired
 	ConsommationRepository VR;
+	@Autowired
+	VehiculeRepository VER;
 	
 	@GetMapping(value="")
 	public List<Consommation> Index() {
@@ -38,6 +42,7 @@ public class ConsommationController {
 	
 	@PostMapping(value="/add")
 	public Consommation Create(@RequestBody Consommation NewConsommation) {
+		
 		Consommation V = VR.save(NewConsommation);
 		return V;
 	}

@@ -33,11 +33,12 @@ public class Time implements Serializable {
 	private static final long serialVersionUID = -4967326735829656804L;
 
 	@Id
+	@Column(name="timeId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(nullable=false)
-	private int month_num; 
+	private int monthNum; 
 
 	@Column(nullable=false)
 	private int yearGeneration;

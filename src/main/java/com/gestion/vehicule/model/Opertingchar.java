@@ -33,17 +33,21 @@ public class Opertingchar implements Serializable {
 	private static final long serialVersionUID = -1763280667314584608L;
 
 	@Id
+	@Column(name="opCharId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(nullable=false)
-	private int cruisingRange;
+	private String cruisingRange;
 	
 	@Column(nullable=false)
 	private int fuelTankCapacity;
 	
 	@Column(nullable=false)
 	private String fuel;
+	
+	@Column(nullable=false)
+	private String emissionStandards;
 	
 	@Column(nullable=false)
 	private float acceleration;

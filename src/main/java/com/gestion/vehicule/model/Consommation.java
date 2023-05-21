@@ -34,41 +34,33 @@ public class Consommation implements Serializable{
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "vehicule_id")
+	@JoinColumn(name = "vehiculeId")
 	private Vehicule vehicule;
 	
 
 	@ManyToOne
-	@JoinColumn(name = "engine_id")
+	@JoinColumn(name = "engineId")
 	private Engine engine;
 	
 	@ManyToOne
-	@JoinColumn(name = "opch_id")
+	@JoinColumn(name = "opCharId")
 	private Opertingchar opertingchar;
 
 	@ManyToOne
-	@JoinColumn(name = "time_id")
+	@JoinColumn(name = "timeId")
 	private Time time;
 	
 	@Column(nullable=false)
-	private String modele;
+	private int maxSpeed;
 	
 	@Column(nullable=false)
-	private String serie;
+	private float cityDrivingFuel;
 	
 	@Column(nullable=false)
-	private int speed;
-	
-	@Column(nullable=false)
-	private float taux_consomationcity;
-	
-	@Column(nullable=false)
-	private float taux_consomationhighway;
+	private float highwayDrivingFuel;
 	
 	@Column(nullable=true)
-	private int moyen_distanceParcours;
-	
-	@Column(nullable=false)
-	private float mixed_consommation;
+	private int cruisingRange;
+
 	
 }
