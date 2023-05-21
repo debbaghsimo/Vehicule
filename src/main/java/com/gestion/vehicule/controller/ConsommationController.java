@@ -43,10 +43,14 @@ public class ConsommationController {
 	@PostMapping(value="/add")
 	public Consommation Create(@RequestBody Consommation NewConsommation) {
         Opertingchar o = VEO.findById(NewConsommation.getOpertingchar().getId()).orElse(null);
+        int a = 0;
         NewConsommation.setMaxSpeed(o.getMaxSpeed());
-        NewConsommation.setCruisingRange(Integer.parseInt(o.getCruisingRange()));
         NewConsommation.setCityDrivingFuel(o.getCityDrivingFuel());
         NewConsommation.setHighwayDrivingFuel(o.getHighwayDrivingFuel());
+        if(o.getCruisingRange()!="") {
+        	a = Integer.parseInt(o.getCruisingRange().split("to")[1].replaceAll(" ", ""));
+        }
+        NewConsommation.setCruisingRange(a);
 		Consommation V = VR.save(NewConsommation);
 		return V;
 	}
@@ -54,11 +58,15 @@ public class ConsommationController {
 	@PutMapping(value="/update")
 	public Consommation Update(@RequestBody Consommation NewConsommation) {
 		 Opertingchar o = VEO.findById(NewConsommation.getOpertingchar().getId()).orElse(null);
-	      NewConsommation.setMaxSpeed(o.getMaxSpeed());
-	      NewConsommation.setCruisingRange(Integer.parseInt(o.getCruisingRange()));
-	      NewConsommation.setCityDrivingFuel(o.getCityDrivingFuel());
-	      NewConsommation.setHighwayDrivingFuel(o.getHighwayDrivingFuel());
-		Consommation V = VR.save(NewConsommation);
+	        int a = 0;
+	        NewConsommation.setMaxSpeed(o.getMaxSpeed());
+	        NewConsommation.setCityDrivingFuel(o.getCityDrivingFuel());
+	        NewConsommation.setHighwayDrivingFuel(o.getHighwayDrivingFuel());
+	        if(o.getCruisingRange()!="") {
+	        	a = Integer.parseInt(o.getCruisingRange().split("to")[1].replaceAll(" ", ""));
+	        }
+	        NewConsommation.setCruisingRange(a);
+			Consommation V = VR.save(NewConsommation);
 		return V;
 	}
 
