@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gestion.vehicule.model.Consommation;
-import com.gestion.vehicule.model.Vehicule;
+import com.gestion.vehicule.model.Opertingchar;
 import com.gestion.vehicule.repository.ConsommationRepository;
-import com.gestion.vehicule.repository.VehiculeRepository;
+import com.gestion.vehicule.repository.OpertingcharRepository;
 
 @RestController
 @RequestMapping(path="/consommation")
@@ -25,7 +25,7 @@ public class ConsommationController {
 	@Autowired
 	ConsommationRepository VR;
 	@Autowired
-	VehiculeRepository VER;
+	OpertingcharRepository VEO;
 	
 	@GetMapping(value="")
 	public List<Consommation> Index() {
@@ -42,13 +42,22 @@ public class ConsommationController {
 	
 	@PostMapping(value="/add")
 	public Consommation Create(@RequestBody Consommation NewConsommation) {
-		
+        Opertingchar o = VEO.findById(NewConsommation.getOpertingchar().getId()).orElse(null);
+        NewConsommation.setMaxSpeed(o.getMaxSpeed());
+        NewConsommation.setCruisingRange(Integer.parseInt(o.getCruisingRange()));
+        NewConsommation.setCityDrivingFuel(o.getCityDrivingFuel());
+        NewConsommation.setHighwayDrivingFuel(o.getHighwayDrivingFuel());
 		Consommation V = VR.save(NewConsommation);
 		return V;
 	}
 	
 	@PutMapping(value="/update")
 	public Consommation Update(@RequestBody Consommation NewConsommation) {
+		 Opertingchar o = VEO.findById(NewConsommation.getOpertingchar().getId()).orElse(null);
+	      NewConsommation.setMaxSpeed(o.getMaxSpeed());
+	      NewConsommation.setCruisingRange(Integer.parseInt(o.getCruisingRange()));
+	      NewConsommation.setCityDrivingFuel(o.getCityDrivingFuel());
+	      NewConsommation.setHighwayDrivingFuel(o.getHighwayDrivingFuel());
 		Consommation V = VR.save(NewConsommation);
 		return V;
 	}
